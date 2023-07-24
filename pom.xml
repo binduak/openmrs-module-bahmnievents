@@ -45,6 +45,8 @@
 		<mockitoVersion>3.5.11</mockitoVersion>
 		<argLine>-Xmx1024m</argLine>
 		<jacocoVersion>0.7.9</jacocoVersion>
+		<lombokVersion>1.18.26</lombokVersion>
+		<openmrs.fhir2.version>1.10.0-SNAPSHOT</openmrs.fhir2.version>
 	</properties>
 
 	<build>
@@ -134,6 +136,18 @@
 				<artifactId>webservices.rest-omod-common</artifactId>
 				<version>${openMRSWebServicesVersion}</version>
 				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombokVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>fhir2-api</artifactId>
+				<version>${openmrs.fhir2.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>

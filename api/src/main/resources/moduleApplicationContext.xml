@@ -9,4 +9,52 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:component-scan base-package="org.bahmni.module.events.api"/>
+
+<!--    IPDSchedule bean-->
+    <bean id="ipdScheduleService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">
+            <bean class="org.bahmni.module.events.api.ipd.service.impl.IpdScheduleServiceImpl">
+                <property name="ipdScheduleDao">
+                    <ref bean="ipdScheduleDao"/>
+                </property>
+            </bean>
+        </property>
+        <property name="preInterceptors">
+            <ref bean="serviceInterceptors"/>
+        </property>
+        <property name="transactionAttributeSource">
+            <ref bean="transactionAttributeSource"/>
+        </property>
+    </bean>
+    <bean id="ipdScheduleDao" class="org.bahmni.module.events.api.ipd.dao.impl.HibernateIpdScheduleDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+<!--    IpdSlot Bean-->
+    <bean id="ipdSlotService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">
+            <bean class="org.bahmni.module.events.api.ipd.service.impl.IpdSlotServiceImpl">
+                <property name="ipdSlotDao">
+                    <ref bean="ipdSlotDao"/>
+                </property>
+            </bean>
+        </property>
+        <property name="preInterceptors">
+            <ref bean="serviceInterceptors"/>
+        </property>
+        <property name="transactionAttributeSource">
+            <ref bean="transactionAttributeSource"/>
+        </property>
+    </bean>
+    <bean id="ipdSlotDao" class="org.bahmni.module.events.api.ipd.dao.impl.HibernateIpdSlotDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 </beans>
